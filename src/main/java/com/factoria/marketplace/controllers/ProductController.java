@@ -1,11 +1,12 @@
 package com.factoria.marketplace.controllers;
 
+import com.factoria.marketplace.dto.ProductRequestDto;
 import com.factoria.marketplace.models.Product;
+import com.factoria.marketplace.models.User;
 import com.factoria.marketplace.services.IProductService;
+import com.factoria.marketplace.services.IUserService;
 import com.factoria.marketplace.services.ProductService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,13 +14,26 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ProductController {
     private IProductService productService;
+    private IUserService userService;
 
-    public ProductController(IProductService productService) {
+    public ProductController(IProductService productService, IUserService userService) {
         this.productService = productService;
+        this.userService = userService;
     }
 
     @GetMapping("/products")
     List<Product> getAll() {
         return productService.getAll();
     }
+
+    @PostMapping("/products")
+    Product createProduct (@RequestBody ProductRequestDto productRequest) {
+        var authUser = getAuthUser();
+        return productService.createProduct(productRequest, authUser);
+    }
+
+    private User getAuthUser() {
+        return userService.getById(1L);
+    }
+
 }

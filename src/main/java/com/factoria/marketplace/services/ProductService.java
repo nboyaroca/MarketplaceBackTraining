@@ -1,6 +1,8 @@
 package com.factoria.marketplace.services;
 
+import com.factoria.marketplace.dto.ProductRequestDto;
 import com.factoria.marketplace.models.Product;
+import com.factoria.marketplace.models.User;
 import com.factoria.marketplace.repositories.IProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +21,10 @@ public class ProductService implements IProductService{
     public List<Product> getAll() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Product createProduct(ProductRequestDto productDto, User authUser) {
+        return null;
+    }
+
 }
