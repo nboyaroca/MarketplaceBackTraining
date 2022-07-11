@@ -9,7 +9,7 @@ INTO
   users
   (user_name, avatar)
 VALUES
-  ('Trinity', 'trinity.jpqg');
+  ('Trinity', 'trinity.jpg');
 INSERT
 INTO
   products

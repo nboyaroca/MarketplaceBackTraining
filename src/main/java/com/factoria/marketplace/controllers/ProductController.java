@@ -16,6 +16,7 @@ public class ProductController {
     private IProductService productService;
     private IUserService userService;
 
+    // CONSTRUCTOR (AMB GENERATE)
     public ProductController(IProductService productService, IUserService userService) {
         this.productService = productService;
         this.userService = userService;
