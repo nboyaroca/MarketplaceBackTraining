@@ -11,4 +11,6 @@ public interface IProductService {
     List<Product> getAll();
 
     Product createProduct(ProductRequestDto productDto, User authUser);
+
+    Product getById(Long id);
 }

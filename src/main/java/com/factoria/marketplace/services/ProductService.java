@@ -1,6 +1,7 @@
 package com.factoria.marketplace.services;
 
 import com.factoria.marketplace.dto.ProductRequestDto;
+import com.factoria.marketplace.exceptions.NotFoundException;
 import com.factoria.marketplace.models.Product;
 import com.factoria.marketplace.models.User;
 import com.factoria.marketplace.repositories.IProductRepository;
@@ -30,6 +31,13 @@ public class ProductService implements IProductService{
         product.setPrice(productDto.getPrice());
         product.setSeller(authUser);
         return productRepository.save(product);
+    }
+
+    @Override
+    public Product getById(Long id) {
+        var opProduct = productRepository.findById(id);
+        if (opProduct.isEmpty()) throw new NotFoundException("Product Not Found", "P-153");
+        return opProduct.get();
     }
 
 }
